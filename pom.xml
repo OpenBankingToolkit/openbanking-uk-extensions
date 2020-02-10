@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2019 ForgeRock AS.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>ForgeRock OpenBanking uk Extensions</name>
+    <groupId>com.forgerock.openbanking</groupId>
+    <artifactId>forgerock-openbanking-uk-extensions</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <description>
+        A Java library to extend the Openbanking UK SDK
+    </description>
+    <organization>
+        <name>ForgeRock</name>
+        <url>http://www.forgerock.org</url>
+    </organization>
+    <url>http://www.forgerock.org</url>
+
+    <parent>
+        <groupId>com.forgerock.openbanking</groupId>
+        <artifactId>forgerock-openbanking-starter-parent</artifactId>
+        <version>1.0.62</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <ob-aspsp.version>1.0.61</ob-aspsp.version>
+        <ob-common.version>1.0.64</ob-common.version>
+        <ob-clients.version>1.0.25</ob-clients.version>
+    </properties>
+
+    <modules>
+        <module>forgerock-openbanking-uk-extensions</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- OpenBanking -->
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-model</artifactId>
+                <version>${ob-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-model</artifactId>
+                <version>${ob-common.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-openbanking-toolkit-OpenBankingToolKit</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/openbanking-toolkit/OpenBankingToolKit</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</connection>
+        <developerConnection>scm:git:https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</developerConnection>
+        <url>https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-openbankingtoolkit-OpenBankingToolkit</id>
+            <name>OpenBankingToolkit UK extensions</name>
+            <url>https://api.bintray.com/maven/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
+</project>
