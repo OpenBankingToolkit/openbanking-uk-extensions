@@ -3,8 +3,8 @@
 | |Current Status|
 |---|---|
 |Build|[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FOpenBankingToolkit%2Fopenbanking-uk-extensions%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/OpenBankingToolkit/openbanking-uk-extensions/goto?ref=master)|
-|Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolKit/openbanking-uk-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-aspsp)
-|Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-aspsp)|
+|Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolKit/openbanking-uk-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-uk-extensions)
+|Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions)|
 |License|![license](https://img.shields.io/github/license/ACRA/acra.svg)|
 
 ForgeRock OpenBanking Extensions
