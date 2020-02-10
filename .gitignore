@@ -1,0 +1,24 @@
+.idea/*
+!.idea/runConfigurations/*
+node_modules/
+target/
+.mvn/
+logs/
+local-keys/*
+dist/
+node/
+*.iml
+*.tgz
+.DS_Store
+**/.DS_Store
+
+# ForgeRock #
+#############
+pom.xml.versionsBackup
+
+# vscode
+.classpath
+.factorypath
+.project
+.settings/
+mongodata/
