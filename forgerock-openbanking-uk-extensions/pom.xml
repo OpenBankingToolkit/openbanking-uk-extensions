@@ -55,10 +55,6 @@
             <artifactId>forgerock-openbanking-uk-aspsp-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.forgerock.openbanking.aspsp</groupId>
-            <artifactId>forgerock-openbanking-uk-aspsp-rs-gateway-server</artifactId>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13</version>

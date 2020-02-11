@@ -66,11 +66,6 @@
                 <version>${ob-aspsp.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.forgerock.openbanking.aspsp</groupId>
-                <artifactId>forgerock-openbanking-uk-aspsp-rs-gateway-server</artifactId>
-                <version>${ob-aspsp.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-model</artifactId>
                 <version>${ob-common.version}</version>
