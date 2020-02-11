@@ -6,6 +6,7 @@
 |Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolKit/openbanking-uk-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-uk-extensions)
 |Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions.svg?maxAge=259200)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-uk-extensions)|
 |License|![license](https://img.shields.io/github/license/ACRA/acra.svg)|
+
 ForgeRock OpenBanking Extensions
 ===========================
 
