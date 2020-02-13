@@ -367,6 +367,12 @@ public class CSVFileValidationsTest {
         assertThat(errorException.getMessage()).isEqualTo(String.format("Reference format error, parse error. Has been Found %d references that contains the word '%s'.", 1, CSVValidation.REF_WORD_TO_FIND));
     }
 
+    @Test
+    public void generic_csvToString_noErrors(){
+        file.getHeaderIndicatorSection().setHeaderIndicator("CSVTOSTRING");
+        assertThat(file.toString()).containsIgnoringCase("CSVTOSTRING");
+    }
+
     /**
      * Get the file content like a string
      *

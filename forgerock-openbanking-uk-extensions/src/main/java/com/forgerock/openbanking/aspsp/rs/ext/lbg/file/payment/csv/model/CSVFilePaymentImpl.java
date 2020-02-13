@@ -20,10 +20,18 @@
  */
 package com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model;
 
+import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.factory.CSVFilePaymentFactory;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.factory.CSVFilePaymentType;
+import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.validation.CSVValidation;
+import com.forgerock.openbanking.exceptions.OBErrorException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -78,4 +86,61 @@ public class CSVFilePaymentImpl implements CSVFilePayment {
         return creditIndicatorRows.stream().map(CSVCreditIndicatorRow::getDebitAmount).reduce(BigDecimal::add).get();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(headerIndicatorSection.toCsvString());
+        sb.append("\n");
+        sb.append(debitIndicatorSection.toCsvString());
+        sb.append("\n");
+        creditIndicatorRows.stream().forEach(r -> {
+                    sb.append(r.toCsvString()).append("\n");
+                }
+        );
+        return sb.toString();
+    }
+
+    public static void main(String[] args) throws OBErrorException {
+        CSVFilePayment file = null;
+        if (file == null) {
+            file = CSVFilePaymentFactory.create(CSVFilePaymentType.UK_LBG_FPS_BATCH_V10);
+        }
+        file.setHeaderIndicator(
+                CSVHeaderIndicatorSection.builder()
+                        .headerIndicator(CSVHeaderIndicatorSection.HEADER_IND_EXPECTED)
+                        .fileCreationDate(file.getDateTimeFormatter().format(LocalDate.now()))
+                        .uniqueId("ID001")
+                        .numCredits(1)
+                        .valueCreditsSum(new BigDecimal(10.10).setScale(2, RoundingMode.CEILING))
+                        .build()
+        );
+
+        file.setDebitIndicator(
+                CSVDebitIndicatorSection.builder()
+                        .debitIndicator(CSVDebitIndicatorSection.DEBIT_IND_EXPECTED)
+                        .paymentDate(file.getDateTimeFormatter().format(LocalDate.now().plusDays(2)))
+                        .batchReference("Payments")
+                        .debitAccountDetails("301775-12345678")
+                        .build()
+        );
+
+        List row = new ArrayList<CSVCreditIndicatorRow>();
+        row.add(
+                CSVCreditIndicatorRow.builder()
+                        .creditIndicator(CSVCreditIndicatorRow.CREDIT_IND_EXPECTED)
+                        .recipientName("Beneficiary name")
+                        .accNumber("12345678")
+                        .recipientSortCode("301763")
+                        .reference("Beneficiary ref.")
+                        .debitAmount(new BigDecimal(10.10).setScale(2, RoundingMode.CEILING))
+                        .paymentASAP(CSVValidation.PAYMENT_ASAP_VALUES[0])
+                        .paymentDate("")
+                        .eToEReference("EtoEReference")
+                        .build()
+        );
+
+        file.setCreditIndicatorRows(row);
+
+        System.out.println(file.toString());
+    }
 }

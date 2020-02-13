@@ -23,6 +23,8 @@ package com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 
 @Data
@@ -34,4 +36,27 @@ public class CSVHeaderIndicatorSection {
     private String uniqueId;
     private int numCredits;
     private BigDecimal valueCreditsSum;
+
+
+    protected final String toCsvString() {
+
+        StringBuilder result = new StringBuilder();
+
+        //determine fields declared in this class only (no fields of superclass)
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        //print field names paired with their values
+        for (Field field : fields) {
+            try {
+                if (Modifier.isPrivate(field.getModifiers()) && field.get(this) != null) {
+                    //requires access to private field:
+                    result.append(field.get(this)).append(",");
+                }
+            } catch (IllegalAccessException ex) {
+                System.out.println(ex);
+            }
+        }
+
+        return result.toString().substring(0, result.length() - 1);
+    }
 }
