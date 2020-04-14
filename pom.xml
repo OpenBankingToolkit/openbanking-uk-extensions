@@ -105,8 +105,8 @@
     </repositories>
 
     <scm>
-        <connection>scm:git:https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</connection>
-        <developerConnection>scm:git:https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</developerConnection>
+        <connection>scm:git:git@github.com:OpenBankingToolkit/openbanking-uk-extensions.git</connection>
+        <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-uk-extensions.git</developerConnection>
         <url>https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</url>
         <tag>HEAD</tag>
     </scm>
