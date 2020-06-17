@@ -22,3 +22,6 @@ pom.xml.versionsBackup
 .project
 .settings/
 mongodata/
+release.properties
+*.releaseBackup
+pom.xml.versionsBackup
