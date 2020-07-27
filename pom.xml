@@ -27,7 +27,7 @@
     <name>ForgeRock OpenBanking uk Extensions</name>
     <groupId>com.forgerock.openbanking</groupId>
     <artifactId>openbanking-uk-extensions</artifactId>
-    <version>1.0.13-SNAPSHOT</version>
+    <version>1.0.12-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>
         A Java library to extend the Openbanking UK SDK
@@ -54,6 +54,7 @@
         <springboot-test.version>2.1.5.RELEASE</springboot-test.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -213,6 +214,15 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                    <configuration>
+                        <tagNameFormat>@{version}</tagNameFormat>
+                        <scmCommentPrefix>Release candidate:</scmCommentPrefix>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
