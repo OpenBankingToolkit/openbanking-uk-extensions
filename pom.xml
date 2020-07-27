@@ -26,7 +26,7 @@
     <name>ForgeRock OpenBanking uk Extensions</name>
     <groupId>com.forgerock.openbanking</groupId>
     <artifactId>openbanking-uk-extensions</artifactId>
-    <version>1.0.12-SNAPSHOT</version>
+    <version>1.0.13-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>
         A Java library to extend the Openbanking UK SDK
@@ -41,20 +41,20 @@
         <module>forgerock-openbanking-uk-extensions</module>
     </modules>
 
-    <parent>
-        <groupId>com.forgerock.openbanking</groupId>
-        <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.0.74</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
-
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <ob-aspsp.version>1.0.90</ob-aspsp.version>
+        <ob-aspsp.version>1.0.91</ob-aspsp.version>
         <ob-common.version>1.0.77</ob-common.version>
-        <ob-clients.version>1.0.35</ob-clients.version>
+        <ob-clients.version>1.0.36</ob-clients.version>
+        <!-- others -->
+        <commons-csv.version>1.7</commons-csv.version>
+        <springboot-test.version>2.1.5.RELEASE</springboot-test.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+        <license-maven-plugin.version>3.0</license-maven-plugin.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -75,7 +75,19 @@
                 <artifactId>forgerock-openbanking-analytics-client</artifactId>
                 <version>${ob-clients.version}</version>
             </dependency>
-
+            <!-- Others -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${commons-csv.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot-test.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -106,7 +118,8 @@
 
     <scm>
         <connection>scm:git:git@github.com:OpenBankingToolkit/openbanking-uk-extensions.git</connection>
-        <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-uk-extensions.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-uk-extensions.git
+        </developerConnection>
         <url>https://github.com/OpenBankingToolkit/openbanking-uk-extensions.git</url>
         <tag>HEAD</tag>
     </scm>
@@ -123,5 +136,111 @@
             <url>https://maven.forgerock.org:443/repo/community</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>11</source>
+                        <target>11</target>
+                        <fork>true</fork>
+                        <compilerArgs>
+                            <arg>-XDignore.symbol.file</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license-maven-plugin.version}</version>
+                    <configuration>
+                        <header>file://${maven.multiModuleProjectDirectory}/legal/LICENSE.txt</header>
+                        <includes>
+                            <include>**/*.java</include>
+                            <include>pom.xml</include>
+                        </includes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>process-sources</phase>
+                            <goals>
+                                <goal>format</goal>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-unit-test-coverage</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>prepare-it-coverage</id>
+                            <goals>
+                                <goal>prepare-agent-integration</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>merge-reports</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>merge</goal>
+                            </goals>
+                            <configuration>
+                                <fileSets>
+                                    <fileSet>
+                                        <directory>${project.build.directory}</directory>
+                                        <includes>
+                                            <include>*.exec</include>
+                                        </includes>
+                                    </fileSet>
+                                </fileSets>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                    <configuration>
+                        <tagNameFormat>@{version}</tagNameFormat>
+                        <scmCommentPrefix>Release candidate:</scmCommentPrefix>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
