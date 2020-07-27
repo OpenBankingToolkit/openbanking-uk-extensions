@@ -41,20 +41,16 @@
         <module>forgerock-openbanking-uk-extensions</module>
     </modules>
 
-    <parent>
-        <groupId>com.forgerock.openbanking</groupId>
-        <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.0.74</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
-
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <ob-aspsp.version>1.0.90</ob-aspsp.version>
+        <ob-aspsp.version>1.0.91</ob-aspsp.version>
         <ob-common.version>1.0.77</ob-common.version>
-        <ob-clients.version>1.0.35</ob-clients.version>
+        <ob-clients.version>1.0.36</ob-clients.version>
+        <!-- others -->
+        <commons-csv.version>1.7</commons-csv.version>
+        <springboot-test.version>2.1.5.RELEASE</springboot-test.version>
     </properties>
 
     <dependencyManagement>
@@ -75,7 +71,19 @@
                 <artifactId>forgerock-openbanking-analytics-client</artifactId>
                 <version>${ob-clients.version}</version>
             </dependency>
-
+            <!-- Others -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${commons-csv.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot-test.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
