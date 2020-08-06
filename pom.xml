@@ -45,7 +45,7 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <ob-aspsp.version>1.0.91</ob-aspsp.version>
+        <ob-aspsp.version>1.0.92</ob-aspsp.version>
         <ob-common.version>1.0.77</ob-common.version>
         <ob-clients.version>1.0.36</ob-clients.version>
         <!-- others -->
