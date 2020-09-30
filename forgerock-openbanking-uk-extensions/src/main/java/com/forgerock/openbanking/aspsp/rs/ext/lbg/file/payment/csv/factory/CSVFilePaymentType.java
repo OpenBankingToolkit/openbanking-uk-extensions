@@ -23,6 +23,8 @@ package com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.factory;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.exception.CSVErrorException;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.exception.CSVErrorType;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.util.MimeType;
 
 import java.util.Arrays;
 
@@ -43,7 +45,7 @@ public enum CSVFilePaymentType {
     }
 
     public String getContentType() {
-        return "text/csv";
+        return MediaType.TEXT_PLAIN_VALUE;
     }
 
     public boolean isSupported(String fileType) {
