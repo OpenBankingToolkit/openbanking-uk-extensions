@@ -26,7 +26,7 @@ import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model.CSVCred
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model.CSVDebitIndicatorSection;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model.CSVFilePayment;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model.CSVHeaderIndicatorSection;
-import com.forgerock.openbanking.common.model.openbanking.v3_1.payment.FRFileConsent2;
+import com.forgerock.openbanking.common.model.openbanking.persistence.payment.FRFileConsent;
 import com.forgerock.openbanking.exceptions.OBErrorException;
 import com.forgerock.openbanking.model.error.OBRIErrorType;
 import lombok.extern.slf4j.Slf4j;
@@ -324,7 +324,7 @@ public class CSVValidationService implements CSVValidation {
          * @param filePayment Payment file consent
          * @throws OBErrorException Validation failed
          */
-        public static void numTransactions(FRFileConsent2 fileConsent, CSVFilePayment filePayment) throws OBErrorException {
+        public static void numTransactions(FRFileConsent fileConsent, CSVFilePayment filePayment) throws OBErrorException {
             if(fileConsent.getInitiation().getNumberOfTransactions()!=null | !fileConsent.getInitiation().getNumberOfTransactions().isBlank() | !fileConsent.getInitiation().getNumberOfTransactions().isEmpty()) {
                 log.debug("Metadata indicates expected transaction count of '{}'. File contains '{}' transactions", fileConsent.getInitiation().getNumberOfTransactions(), filePayment.getHeaderIndicatorSection().getNumCredits());
                 if (filePayment.getHeaderIndicatorSection().getNumCredits() != Integer.valueOf(fileConsent.getInitiation().getNumberOfTransactions())) {
@@ -344,7 +344,7 @@ public class CSVValidationService implements CSVValidation {
          * @param filePayment Payment file consent
          * @throws OBErrorException Validation failed
          */
-        public static void controlSum(FRFileConsent2 fileConsent, CSVFilePayment filePayment) throws OBErrorException {
+        public static void controlSum(FRFileConsent fileConsent, CSVFilePayment filePayment) throws OBErrorException {
             if(fileConsent.getInitiation().getControlSum()!=null) {
                 BigDecimal fileControlSum = filePayment.getCreditRowsTotalDebitAmount();
                 log.debug("Metadata indicates expected control sum of '{}'. File contains actual control sum of '{}'", fileConsent.getInitiation().getControlSum(), fileControlSum);
