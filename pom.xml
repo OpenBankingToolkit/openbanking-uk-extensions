@@ -45,7 +45,7 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <ob-aspsp.version>1.0.108</ob-aspsp.version>
+        <ob-aspsp.version>1.0.111</ob-aspsp.version>
         <ob-common.version>1.0.86</ob-common.version>
         <ob-clients.version>1.0.44</ob-clients.version>
         <!-- others -->
@@ -105,14 +105,6 @@
         <repository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com/</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-openbanking-toolkit-OpenBankingToolKit</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/openbanking-toolkit/OpenBankingToolKit</url>
         </repository>
     </repositories>
 
