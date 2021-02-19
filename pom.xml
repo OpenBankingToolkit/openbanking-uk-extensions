@@ -50,7 +50,7 @@
         <ob-clients.version>1.0.44</ob-clients.version>
         <!-- others -->
         <commons-csv.version>1.7</commons-csv.version>
-        <springboot-test.version>2.1.5.RELEASE</springboot-test.version>
+        <springboot-test.version>2.4.3</springboot-test.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
