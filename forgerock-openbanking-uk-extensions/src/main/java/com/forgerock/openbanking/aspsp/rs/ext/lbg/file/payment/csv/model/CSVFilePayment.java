@@ -22,6 +22,7 @@ package com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model;
 
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.factory.CSVFilePaymentType;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.validation.CSVValidationService;
+import com.forgerock.openbanking.common.model.openbanking.forgerock.filepayment.v3_0.FRFilePayment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -32,6 +33,7 @@ import java.util.List;
  * CSV file payment interface model
  */
 public interface CSVFilePayment {
+    String GBP = "GBP";
 
     void setHeaderIndicator(CSVHeaderIndicatorSection headerIndicator);
 
@@ -47,6 +49,8 @@ public interface CSVFilePayment {
 
     CSVFilePaymentType getFilePaymentType();
 
+    List<FRFilePayment> toFRFilePaymentList();
+
     default BigDecimal getCreditRowsTotalDebitAmount() {
         return new BigDecimal(0.00).setScale(2, RoundingMode.CEILING);
     }
@@ -54,5 +58,4 @@ public interface CSVFilePayment {
     default DateTimeFormatter getDateTimeFormatter() {
         return DateTimeFormatter.ofPattern(CSVValidationService.DATE_FORMAT);
     }
-
 }
