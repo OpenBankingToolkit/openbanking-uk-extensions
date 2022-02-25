@@ -59,15 +59,15 @@ public class CSVFileValidationsTest {
     final static String RESOURCES_PACK = "ext/lbg/file/payment/csv";
     CSVFilePayment file;
 
-    @Before
-    public void setup() {
-        Exception error = catchThrowableOfType(
-                () -> setFile(),
-                Exception.class
-        );
-        assertThat(error).isNull();
-        assertThat(file).isNotNull();
-    }
+//    @Before
+//    public void setup() {
+//        Exception error = catchThrowableOfType(
+//                () -> setFile(),
+//                Exception.class
+//        );
+//        assertThat(error).isNull();
+//        assertThat(file).isNotNull();
+//    }
 
     /**
      * Validation of header indicator value<br>
@@ -238,7 +238,7 @@ public class CSVFileValidationsTest {
      */
     @Test
     public void generic_numCreditsRows_NotMatchWithHeader() {
-        IntStream.range(0, 2).parallel().forEach(i ->
+        IntStream.range(0, 2).forEach(i ->
                 file.getCreditIndicatorRows().add(CSVCreditIndicatorRow
                         .builder().creditIndicator("C").build())
         );
@@ -259,7 +259,7 @@ public class CSVFileValidationsTest {
      */
     @Test
     public void generic_numCreditsRows_NotAllowed() {
-        IntStream.range(0, 30).parallel().forEach(i ->
+        IntStream.range(0, 30).forEach(i ->
                 file.getCreditIndicatorRows().add(CSVCreditIndicatorRow.builder()
                         .creditIndicator(CSVCreditIndicatorRow.CREDIT_IND_EXPECTED)
                         .recipientName("Beneficiary name")
@@ -305,7 +305,7 @@ public class CSVFileValidationsTest {
      */
     @Test
     public void generic_sumCreditsRows_NOT_MatchWithHeaderValue() {
-        IntStream.range(0, 10).parallel().forEach(i ->
+        IntStream.range(0, 10).forEach(i ->
                 file.getCreditIndicatorRows().add(CSVCreditIndicatorRow.builder()
                         .creditIndicator(CSVCreditIndicatorRow.CREDIT_IND_EXPECTED)
                         .recipientName("Beneficiary name")
@@ -392,9 +392,9 @@ public class CSVFileValidationsTest {
      * @throws OBErrorException
      */
     @Ignore
-    private void setFile() throws OBErrorException {
+    void setFile(CSVFilePaymentType csvFilePaymentType) throws OBErrorException {
         if (file == null) {
-            file = CSVFilePaymentFactory.create(CSVFilePaymentType.UK_LBG_FPS_BATCH_V10);
+            file = CSVFilePaymentFactory.create(csvFilePaymentType);
         }
         file.setHeaderIndicator(
                 CSVHeaderIndicatorSection.builder()
