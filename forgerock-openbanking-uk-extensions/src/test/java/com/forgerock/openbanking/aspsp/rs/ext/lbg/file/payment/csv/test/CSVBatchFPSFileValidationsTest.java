@@ -28,6 +28,7 @@ import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.model.CSVFile
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.parser.CSVParser;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.validation.CSVBatchFPSFileValidationService;
 import com.forgerock.openbanking.aspsp.rs.ext.lbg.file.payment.csv.validation.CSVValidation;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import uk.org.openbanking.datamodel.error.OBStandardErrorCodes1;
@@ -45,6 +46,15 @@ import static org.assertj.core.api.Assertions.catchThrowableOfType;
  */
 public class CSVBatchFPSFileValidationsTest extends CSVFileValidationsTest {
 
+    @Before
+    public void setup() {
+        Exception error = catchThrowableOfType(
+                () -> setFile(CSVFilePaymentType.UK_LBG_FPS_BATCH_V10),
+                Exception.class
+        );
+        assertThat(error).isNull();
+        assertThat(file).isNotNull();
+    }
     /**
      * Parse resource file<br/>
      * <li>No errors expected</li>
